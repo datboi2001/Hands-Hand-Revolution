@@ -19,8 +19,8 @@ export class HandtrackerComponent implements OnInit {
   SAMPLERATE: number = 500; 
   
   detectedGesture:string = "None"
-  width:string = "400"
-  height:string = "400"
+  width:string = "200x"
+  height:string = "200px"
 
   private model: any = null;
   private runInterval: any = null;
@@ -57,7 +57,8 @@ export class HandtrackerComponent implements OnInit {
     this.startVideo().then(()=>{
         //The default size set in the library is 20px. Change here or use styling
         //to hide if video is not desired in UI.
-        this.video.nativeElement.style.height = "200px"
+        this.video.nativeElement.style.height = this.height 
+        this.video.nativeElement.style.width = this.width
 
         console.log("starting predictions");
         this.runInterval = setInterval(()=>{
@@ -88,7 +89,7 @@ export class HandtrackerComponent implements OnInit {
             let pinching = 0;
             for(let p of predictions){
                 //uncomment to view label and position data
-                console.log(p.label + " at X: " + p.bbox[0] + ", Y: " + p.bbox[1] + " at X: " + p.bbox[2] + ", Y: " + p.bbox[3]);
+                // console.log(p.label + " at X: " + p.bbox[0] + ", Y: " + p.bbox[1] + " at X: " + p.bbox[2] + ", Y: " + p.bbox[3]);
                 
                 if(p.label == 'open') openhands++;
                 if(p.label == 'closed') closedhands++;
@@ -110,6 +111,11 @@ export class HandtrackerComponent implements OnInit {
             
             if (pinching > 1) this.detectedGesture = "Two Hands Pinching";
             else if(pinching == 1) this.detectedGesture = "Hand Pinching";
+            
+            if (openhands == 1 && closedhands == 1) this.detectedGesture = "Open Hand and Closed Hand";
+
+            if (openhands == 1 && pointing == 1) this.detectedGesture = "Open Hand and Hand Pointing";
+
 
             if (openhands == 0 && closedhands == 0 && pointing == 0 && pinching == 0)
                 this.detectedGesture = "None";

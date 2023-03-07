@@ -1,0 +1,12 @@
+
+<app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+
+<div [innerHTML]="gesture"></div>
+
+<app-score></app-score>
+
+
+
+<button (click)="startGame()">Get Random Images</button>
+
+<img [src]="currentImage" alt="game gestures">
