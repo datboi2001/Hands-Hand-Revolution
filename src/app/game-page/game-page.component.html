@@ -7,6 +7,13 @@
 
 
 
-<button (click)="startGame()">Get Random Images</button>
 
-<img [src]="currentImage" alt="game gestures">
+<div>
+    <img [src]="currentImage" *ngIf="started" alt="game gestures">
+</div>
+
+<button (click)="startGame()" *ngIf="!started; else stopBlock">Start game</button>
+
+<ng-template #stopBlock>
+    <button (click)="stopGame()">Stop game</button>
+</ng-template>

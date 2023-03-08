@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild, Output, EventEmitter } from '@angular/core';
 import * as handTrack from 'handtrackjs';
 import { PredictionEvent } from '../prediction-event';
 
@@ -7,7 +7,7 @@ import { PredictionEvent } from '../prediction-event';
   templateUrl: './handtracker.component.html',
   styleUrls: ['./handtracker.component.css']
 })
-export class HandtrackerComponent implements OnInit {
+export class HandtrackerComponent implements OnInit, OnDestroy {
   @Output() onPrediction = new EventEmitter<PredictionEvent>();
   @ViewChild('htvideo') video: ElementRef;
   
@@ -40,6 +40,7 @@ export class HandtrackerComponent implements OnInit {
     handTrack.load(this.modelParams).then((lmodel: any) =>{
         this.model = lmodel;
         console.log("loaded");
+        this.startDetection();
     });
   }
 

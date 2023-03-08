@@ -1,6 +1,11 @@
 
 .videobox{
     border: 3px solid #2bff00a4;
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: 10rem;
+}
+
+
+button{
+    font-size: 1rem;
 }

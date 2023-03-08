@@ -8,9 +8,9 @@ import { PredictionEvent } from '../prediction-event';
 })
 export class GamePageComponent implements OnInit, OnDestroy {
   gesture: String = "";
-  
+  started: boolean = false;
   public currentImage: string = "";
-
+  public score = 0;
   private SECOND: number = 3000;
   private timerId: ReturnType<typeof setTimeout> | null = null;
 
@@ -44,6 +44,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
 }
 
   public startGame(): void{
+    this.started = true;
     this.getRandomImages();
     //this.timerId = setInterval(this.getRandomImages, this.SECOND);
     let counter = 5;
@@ -60,12 +61,22 @@ export class GamePageComponent implements OnInit, OnDestroy {
   private flipCoin(): number{
     return Math.floor(Math.random() * 2);
   }
-  
+
+
+  public stopGame(): void{
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    this.started = false;
+  }
   
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
   }
 
   
