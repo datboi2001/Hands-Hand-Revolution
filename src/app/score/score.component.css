@@ -1,0 +1,17 @@
+.game-stat {
+    /*Put the div on the same line*/
+    padding: 0 1rem;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+.game-stat-container {
+    display: flex;
+    margin: 2rem auto;
+}
+
+.gamee-stat-container:first-child{
+    margin-right: 2rem;
+}

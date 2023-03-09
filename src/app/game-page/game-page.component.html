@@ -1,19 +1,21 @@
-
 <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
 
 <div [innerHTML]="gesture"></div>
 
-<app-score></app-score>
 
 
 
-
-<div>
+<div class="game-area game-image">
     <img [src]="currentImage" *ngIf="started" alt="game gestures">
 </div>
 
-<button (click)="startGame()" *ngIf="!started; else stopBlock">Start game</button>
+<div class="game-area">
 
-<ng-template #stopBlock>
-    <button (click)="stopGame()">Stop game</button>
-</ng-template>
+    <button type="button" (click)="startGame()" *ngIf="!started; else stopBlock">Start game</button>
+
+    <ng-template #stopBlock>
+        <button type="button" (click)="stopGame()">Stop game</button>
+    </ng-template>
+</div>
+
+<app-score [level]="level" [score]="score" [lives]="lives"></app-score>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PredictionEvent } from '../prediction-event';
 
 @Component({
   selector: 'app-home-page',
@@ -7,14 +6,9 @@ import { PredictionEvent } from '../prediction-event';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  gesture: String = "";
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  prediction(event: PredictionEvent){
-    this.gesture = event.getPrediction();
   }
 
 }
