@@ -19,7 +19,8 @@ export class GamePageComponent implements OnInit, OnDestroy {
   public correct: boolean = false;
   public counter: number = 100;
   public maxcounter: number = 100;
-
+  private correctSound = new Audio("../../assets/correct-6033.mp3");
+  private wrongSound = new Audio("../../assets/wronganswer-37702.mp3");
   OneHandGestures:string[] = [
     "assets/1Pinch.png",
     "assets/1Pointing.png",
@@ -76,7 +77,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
         this.counter = this.counter - 1;
         if (this.gesture == this.gesturesMap[this.currentImage] && this.correct == false) {
           this.correct = true;
-          new Audio("../../assets/correct-6033.mp3").play();
+          this.correctSound.play();
           this.levelProgress += 1;
           if (this.levelProgress == 5) {
             this.level += 1;
@@ -88,7 +89,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
         if(this.counter == 0) {
           if (this.correct == false) {
             this.lives -= 1;
-            new Audio("../../assets/wronganswer-37702.mp3").play();
+            this.wrongSound.play();
             if (this.lives == 0) {
               this.stopGame();    // End game, display stats
             }
@@ -112,6 +113,12 @@ export class GamePageComponent implements OnInit, OnDestroy {
     if (this.timerId) {
       clearTimeout(this.timerId);
     }
+    this.lives = 3;
+    this.correct = false;
+    this.level = 0;
+    this.levelProgress = 0;
+    this.counter = 100;
+    this.maxcounter = 100;
     this.started = false;
   }
   
