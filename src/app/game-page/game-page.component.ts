@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PredictionEvent } from '../prediction-event';
+import {ScoreService} from "../service/score.service";
 
 @Component({
   selector: 'app-game-page',
@@ -13,12 +14,13 @@ export class GamePageComponent implements OnInit, OnDestroy {
   public score = 0;
   private SECOND: number = 2000;
   private timerId: ReturnType<typeof setTimeout> | null = null;
+  public gameOver = false;
   public lives: number = 3;
   public level: number = 0;
   public levelProgress: number = 0;
   public correct: boolean = false;
   public counter: number = 100;
-  public maxcounter: number = 100;
+  public maxCounter: number = 100;
   private correctSound = new Audio("../../assets/correct-6033.mp3");
   private wrongSound = new Audio("../../assets/wronganswer-37702.mp3");
   OneHandGestures:string[] = [
@@ -46,6 +48,8 @@ export class GamePageComponent implements OnInit, OnDestroy {
     "assets/2Pointing.png": "Two Hands Pointing",
   };
 
+  constructor(private scoreService: ScoreService) { }
+
   public getRandomImages(): void{
     // Flip a coint
     let newImage: string = this.currentImage;
@@ -63,38 +67,34 @@ export class GamePageComponent implements OnInit, OnDestroy {
 }
 
   public startGame(): void{
-    this.lives = 3;
-    this.correct = false;
-    this.level = 0;
-    this.levelProgress = 0;
-    this.counter = 100;
-    this.maxcounter = 100;
+    this.score = 0;
     this.started = true;
+    this.gameOver = false;
     this.getRandomImages();
     //this.timerId = setInterval(this.getRandomImages, this.SECOND);
     
     this.timerId = setInterval(() => {
         this.counter = this.counter - 1;
-        if (this.gesture == this.gesturesMap[this.currentImage] && this.correct == false) {
+        if (this.gesture == this.gesturesMap[this.currentImage] && !this.correct) {
           this.correct = true;
           this.correctSound.play();
           this.levelProgress += 1;
           if (this.levelProgress == 5) {
             this.level += 1;
             this.levelProgress = 0;
-            this.maxcounter = Math.floor(this.maxcounter * .8);
+            this.maxCounter = Math.floor(this.maxCounter * .8);
           }
           this.score += 1;
         }
         if(this.counter == 0) {
-          if (this.correct == false) {
+          if (!this.correct) {
             this.lives -= 1;
             this.wrongSound.play();
             if (this.lives == 0) {
               this.stopGame();    // End game, display stats
             }
           }
-          this.counter = this.maxcounter;
+          this.counter = this.maxCounter;
           this.correct = false;
           this.getRandomImages()
         }
@@ -113,17 +113,19 @@ export class GamePageComponent implements OnInit, OnDestroy {
     if (this.timerId) {
       clearTimeout(this.timerId);
     }
+    this.scoreService.addScore(this.score, new Date())
     this.lives = 3;
     this.correct = false;
+    this.gameOver = true;
     this.level = 0;
     this.levelProgress = 0;
     this.counter = 100;
-    this.maxcounter = 100;
+    this.maxCounter = 100;
     this.started = false;
+
   }
   
 
-  constructor() { }
 
   ngOnInit(): void {
     if (this.timerId) {

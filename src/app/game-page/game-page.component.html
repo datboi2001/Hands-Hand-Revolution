@@ -9,6 +9,10 @@
     <img [src]="currentImage" *ngIf="started" alt="game gestures">
 </div>
 
+<div *ngIf="gameOver" class="game-area">
+    <h1>Game Over!</h1>
+</div>
+
 <div class="game-area">
 
     <button type="button" (click)="startGame()" *ngIf="!started; else stopBlock">Start game</button>
