@@ -15,3 +15,10 @@
 .gamee-stat-container:first-child{
     margin-right: 2rem;
 }
+
+
+@media screen and (max-width: 1000px){
+    .game-stat-container{
+        display:none;
+    }
+}

@@ -15,3 +15,47 @@
     margin: 1rem auto;
     padding: 1rem;
 }
+
+
+.narrow-text{
+    display:none;
+}
+
+
+@media screen and (max-width: 1000px){
+    .narrow-text{
+        display: flex;
+        text-align: center;
+        font-size: 2rem;
+        width: 90vw;
+        margin: 4rem 0;
+    }
+
+    .game-area{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .narrow-text{
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .narrow-text{
+        font-size: 1.6rem;
+    }
+}
+    
+@media screen and (max-width: 700px){
+    .narrow-text{
+        font-size: 1.4rem;
+    }
+}
+
+    
+
+    
+
+    

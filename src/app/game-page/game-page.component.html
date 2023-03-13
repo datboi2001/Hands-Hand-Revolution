@@ -4,9 +4,12 @@
 
 
 
+<div class="narrow-text">
+    Screen is too narrow to display the game.
+</div>
 
-<div class="game-area game-image">
-    <img [src]="currentImage" *ngIf="started" alt="game gestures">
+<div class="game-area game-image" *ngIf="started">
+    <img [src]="currentImage" alt="game gestures">
 </div>
 
 <div *ngIf="gameOver" class="game-area">
@@ -21,5 +24,4 @@
         <button type="button" (click)="stopGame()">Stop game</button>
     </ng-template>
 </div>
-
-<app-score [level]="level" [score]="score" [lives]="lives"></app-score>
+    <app-score [level]="level" [score]="score" [lives]="lives"></app-score>
