@@ -1,5 +1,5 @@
 --Readme document for Datthew Nguyen + Kevin Fang , manhn3@uci.edu + klfang1@uci.edu, 61886297 + 81573919 --
-Demo video:
+Demo video: https://drive.google.com/file/d/1bSuNIc7kYg-CMFYF4ONyRE_4ysEwKLGz/view?usp=share_link
 
 1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
 
