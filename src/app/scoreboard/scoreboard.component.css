@@ -1,0 +1,31 @@
+
+/*
+Two columns in a row
+*/
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin: 1rem;
+}
+
+.leaderboard-text{
+    text-align: center;
+    margin: 1rem;
+}
+.grid-item{
+    border: 1px solid rgba(255, 255, 255, 1);
+    padding: 1rem ;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.table-data{
+    padding: 0 1rem;
+}
+
+.score-data{
+    text-align: right;
+}

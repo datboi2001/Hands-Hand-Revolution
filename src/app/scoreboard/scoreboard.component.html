@@ -1,0 +1,42 @@
+<h1 class="leaderboard-text">
+    Leaderboard
+</h1>
+
+<div class="grid-container">
+        <div class="grid-item">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No. </th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let score of top5Scores; index as i">
+                        <td class="table-data">{{i + 1}}</td>
+                        <td class="table-data">{{formatter.format(score.date)}}</td>
+                        <td class="table-data score-data">{{score.score}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="grid-item">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No. </th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let score of last5Scores; index as i">
+                        <td class="table-data">{{i + 6}}</td>
+                        <td class="table-data">{{formatter.format(score.date)}}</td>
+                        <td class="table-data score-data">{{score.score}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

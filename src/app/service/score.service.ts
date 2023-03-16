@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Score } from '../score';
 
-
-interface Score{
-  date: Date;
-  score: number;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +13,10 @@ export class ScoreService {
       // Load from localStorage
         let scores = localStorage.getItem("leaderBoard");
         if (scores != null){
-            ScoreService.leaderBoard = JSON.parse(scores) as Score[];
+            const leaderBoard = JSON.parse(scores);
+          leaderBoard.forEach((element: { score: any; date: string}) => {
+            ScoreService.leaderBoard.push({score: element.score, date: new Date(element.date)}); 
+          });
         }
     }
   }

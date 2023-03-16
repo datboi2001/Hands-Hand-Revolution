@@ -8,6 +8,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HandtrackerComponent } from './handtracker/handtracker.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { ScoreComponent } from './score/score.component';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ScoreComponent } from './score/score.component';
     HomePageComponent,
     HandtrackerComponent,
     GamePageComponent,
-    ScoreComponent
+    ScoreComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,

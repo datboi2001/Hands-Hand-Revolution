@@ -25,3 +25,5 @@
     </ng-template>
 </div>
     <app-score [level]="level" [score]="score" [lives]="lives"></app-score>
+
+    <app-scoreboard *ngIf="gameOver" [newScore]="score"></app-scoreboard>
